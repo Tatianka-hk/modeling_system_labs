@@ -30,7 +30,9 @@ class Model:
 
             self.print_info()
 
-        self.print_result()
+        max_amount=self.print_result()
+        print(max_amount)
+        return max_amount
 
     def print_info(self):
         for el in self.elements:
@@ -39,12 +41,17 @@ class Model:
 
     def print_result(self):
         print("\n-------------RESULTS-------------")
+        max_amount = 0
         for el in self.elements:
             el.print_result()
             if isinstance(el, Process):
+
                 mean_queue = el.mean_queue / self.t_curr
                 #4 ts
                 el.mean_queue = mean_queue
                 failure_prob = el.failure / (el.served + el.failure)
                 print("mean length of queue = " + str(mean_queue))
                 print("failure probability = " + str(failure_prob))
+                if max_amount < el.served:
+                    max_amount = el.served
+        return max_amount

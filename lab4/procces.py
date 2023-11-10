@@ -1,6 +1,7 @@
 from element import Element
 import random
 
+
 class Process(Element):
     def in_act(self, t_curr):
         if self.state == 0:
@@ -24,8 +25,10 @@ class Process(Element):
             self.queue -= 1
             self.state = 1
             self.t_next = t_curr + self.get_delay()
-        if self.next is not None:
-            self.next.in_act(t_curr)
+        print(self.next)
+        if len(self.next) > 0:
+            next = random.choice(self.next)
+            next.in_act(t_curr)
 
 
 

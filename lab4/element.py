@@ -6,7 +6,7 @@ class Element:
         self.delay = delay
         self.t_next = 0
         self.state = 0
-        self.next = None 
+        self.next = [] 
         self.queue = 0
         self.failure = 0
         self.served = 0
